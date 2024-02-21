@@ -1,5 +1,4 @@
 import { Model, Table, Column, DataType, HasMany } from "sequelize-typescript";
-import bcrypt from "bcryptjs";
 import { Post } from "./Post";
 
 @Table({
@@ -58,7 +57,4 @@ export class User extends Model {
   posts!: Post[]
 }
 
-User.beforeCreate(async (user, options) => {
-  const salt = await bcrypt.genSalt(10);
-  user.password = await bcrypt.hash(user.password, salt);
-});
+

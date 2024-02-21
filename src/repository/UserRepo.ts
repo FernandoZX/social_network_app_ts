@@ -1,4 +1,5 @@
 import { User } from "../model/User";
+import bcrypt from "bcryptjs";
 
 interface IUserRepo {
   save(user: User): Promise<void>;
@@ -17,6 +18,10 @@ export class UserRepo implements IUserRepo {
         age: user.age,
         password:user.password,
         email: user.email,
+      });
+      await User.beforeSave(async (user, options) => {
+        const salt = await bcrypt.genSalt(10);
+        user.password = await bcrypt.hash(user.password, salt);
       });
     } catch (error) {
       throw new Error("Failed to create user!");
@@ -40,6 +45,10 @@ export class UserRepo implements IUserRepo {
       new_user.password =user.password;
 
       await new_user.save();
+      await User.beforeSave(async (user, options) => {
+        const salt = await bcrypt.genSalt(10);
+        user.password = await bcrypt.hash(user.password, salt);
+      });
     } catch (error) {
       throw new Error("Failed to update User!");
     }
