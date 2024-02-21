@@ -25,6 +25,7 @@ export class UserRepo implements IUserRepo {
   async update(user: User): Promise<void> {
     try {
       const new_user = await User.findOne({
+        attributes: { exclude: ['password','deleted_at'] },
         where: {
           id: user.id,
           deleted_at: null
@@ -46,7 +47,7 @@ export class UserRepo implements IUserRepo {
   async delete(userId: number): Promise<void> {
     try {
       const new_user = await User.findOne({
-        attributes: { exclude: ['password'] },
+        attributes: { exclude: ['password','deleted_at'] },
         where: {
           id: userId,
           deleted_at: null
@@ -66,7 +67,7 @@ export class UserRepo implements IUserRepo {
   async retrieveById(userId: number): Promise<User> {
     try {
       const new_user = await User.findOne({
-        attributes: { exclude: ['password'] },
+        attributes: { exclude: ['password','deleted_at'] },
         where: {
           id: userId,
           deleted_at: null
@@ -83,7 +84,7 @@ export class UserRepo implements IUserRepo {
   async retrieveAll(): Promise<User[]> {
     try {
       return await User.findAll({
-        attributes: { exclude: ['password'] },
+        attributes: { exclude: ['password','deleted_at'] },
         where: {
           deleted_at: null,
         }

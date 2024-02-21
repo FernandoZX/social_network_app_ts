@@ -2,10 +2,10 @@ import { z } from "zod";
 
 export const createUserSchema = z.object({
   body: z.object({
-    fullName: z
+    full_name: z
       .string()
-      .min(1, { message: "Title must be greater than 1 characters!" })
-      .max(15, { message: "Title must be lower than 15 characters!" }),
+      .min(1, { message: "Full Name must be greater than 1 characters!" })
+      .max(100, { message: "Full Name must be lower than 15 characters!" }),
     age: z
       .number()
       .int(),
@@ -23,10 +23,10 @@ export const createUserSchema = z.object({
 export const updateUserSchema = z.object({
   params: z.object({ id: z.string() }),
   body: z.object({
-    fullName: z
+    full_name: z
       .string()
-      .min(1, { message: "Title must be greater than 1 characters!" })
-      .max(15, { message: "Title must be lower than 15 characters!" }),
+      .min(1, { message: "Full Name must be greater than 1 characters!" })
+      .max(100, { message: "Full Name must be lower than 15 characters!" }),
     age: z
       .number()
       .int(),

@@ -5,7 +5,7 @@ import { createUserSchema, updateUserSchema } from "../schema/UserSchema";
 
 class PostRoutes extends BaseRoutes {
   public routes(): void {
-    this.router.post("", validate(createUserSchema), UserController.create);
+    this.router.post("/registration", validate(createUserSchema), UserController.create);
     this.router.patch(
       "/:id",
       validate(updateUserSchema),

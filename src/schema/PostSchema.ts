@@ -5,11 +5,11 @@ export const createPostSchema = z.object({
     title: z
       .string()
       .min(1, { message: "Title must be greater than 1 characters!" })
-      .max(15, { message: "Title must be lower than 15 characters!" }),
+      .max(100, { message: "Title must be lower than 100 characters!" }),
     content: z
       .string()
       .min(1, { message: "Content must be greater than 1 characters!" })
-      .max(250, { message: "Content must have a lower 250 character" }),
+      .max(255, { message: "Content must have a lower 255 character" }),
   }),
 });
 
@@ -19,10 +19,10 @@ export const updatePostSchema = z.object({
     title: z
       .string()
       .min(1, { message: "Title must be greater than 1 characters!" })
-      .max(15, { message: "Title must be lower than 15 characters!" }),
+      .max(100, { message: "Title must be lower than 100 characters!" }),
     content: z
       .string()
       .min(1, { message: "Content must be greater than 1 characters!" })
-      .max(250, { message: "Content must have a lower 250 character" }),
+      .max(255, { message: "Content must have a lower 255 character" }),
   }).partial(),
 });

@@ -23,6 +23,7 @@ export class PostRepo implements IPostRepo {
   async update(post: Post): Promise<void> {
     try {
       const new_post = await Post.findOne({
+        attributes: { exclude: ['deleted_at'] },
         where: {
           id: post.id,
           deleted_at: null
@@ -42,6 +43,7 @@ export class PostRepo implements IPostRepo {
   async delete(postId: number): Promise<void> {
     try {
       const new_post = await Post.findOne({
+        attributes: { exclude: ['deleted_at'] },
         where: {
           id: postId,
           deleted_at: null
@@ -59,6 +61,7 @@ export class PostRepo implements IPostRepo {
   async retrieveById(postId: number): Promise<Post> {
     try {
       const new_post = await Post.findOne({
+        attributes: { exclude: ['deleted_at'] },
         where: {
           id: postId,
           deleted_at: null
@@ -75,6 +78,7 @@ export class PostRepo implements IPostRepo {
   async retrieveAll(): Promise<Post[]> {
     try {
       return await Post.findAll({
+        attributes: { exclude: ['deleted_at'] },
         where: {
           deleted_at: null
         }

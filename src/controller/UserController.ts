@@ -5,6 +5,8 @@ import { UserRepo } from "../repository/UserRepo";
 class UserController {
   async create(req: Request, res: Response) {
     try {
+      console.log('body request info controller', req.body.constructor.name);
+      console.log('body request info controller', req.body);
       const new_user = new User();
       new_user.full_name = req.body.full_name;
       new_user.password = req.body.password;
